@@ -2,8 +2,8 @@ import java.util.Arrays;
 
 public class PartyResult {
     private Party party;
-    private Double result = 0.0000;
-    private Double finalResult = 0.00000;
+    private Double result = 0.0;
+    private Double finalResult = 0.0;
     private Integer mandates = 0;
 
     private double[][] costOfMandate;
@@ -47,7 +47,7 @@ public class PartyResult {
         return this;
     }
 
-    public void calculateCostOfMandate() {
+    private void calculateCostOfMandate() {
         // the cost is defined as a munber of votes (percent) which is left after Nth mandate is given
         costOfMandate = new double[mandates][1];
         for (int i = 0; i < mandates; i++) {

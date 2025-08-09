@@ -8,10 +8,9 @@ public class ConstituenciesAndMandates {
 //        cr.printMandateCost();
 
         MockElection me = new MockElection();
-        me.createConstituencyResults(13,2, new Double[]{44.3,52.1});
-        me.createConstituencyResults(9,6);
-        me.getConstituencyResults().stream().forEach(ConstituencyResult::printResults);
-
+        me.createConstituencyResults(9,2, new Double[]{60.0});
+//        me.getConstituencyResults().stream().forEach(ConstituencyResult::printResults);
+        System.out.println(me.getMetaData(true));
 
     }
 }

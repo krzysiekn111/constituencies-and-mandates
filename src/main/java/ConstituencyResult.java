@@ -9,6 +9,9 @@ public class ConstituencyResult {
     private List<PartyResult> list = new ArrayList<>();
     private Random random = new Random();
 
+    public Constituency getConstituency() {
+        return constituency;
+    }
 
     public ConstituencyResult(Constituency constituency) {
         this.constituency = constituency;
@@ -65,6 +68,10 @@ public class ConstituencyResult {
                 .concat("000").substring(0,3)); // I don't want variable 'votes' value to be like 10+ digits long
         votesToTake -= votes;
         return votes;
+    }
+
+    public List<PartyResult> getList() {
+        return this.list;
     }
     void printResults() {
         finalSortPartyList();
