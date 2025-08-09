@@ -1,6 +1,8 @@
 
 public class Constituency {
     private long id;
+    private long mandatesToTake;
+
 
     public long getMandatesToTake() {
         return mandatesToTake;
@@ -9,8 +11,6 @@ public class Constituency {
     public void setMandatesToTake(long mandatesToTake) {
         this.mandatesToTake = mandatesToTake;
     }
-
-    private long mandatesToTake;
 
     public Constituency(long id, long mandatesToTake) {
         this.id = id;

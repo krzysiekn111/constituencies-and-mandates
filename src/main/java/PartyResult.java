@@ -5,6 +5,7 @@ public class PartyResult {
     private Double result = 0.0000;
     private Double finalResult = 0.00000;
     private Integer mandates = 0;
+
     private double[][] costOfMandate;
 
     public PartyResult(Party party) {
@@ -25,6 +26,10 @@ public class PartyResult {
         return mandates;
     }
 
+    public void setMandates(Integer mandates) {
+        this.mandates = mandates;
+    }
+
     public Double getResult() {
         return result;
     }
@@ -32,7 +37,7 @@ public class PartyResult {
         this.result = result;
     }
 
-    public void setMandates() {
+    public void increaseMandates() {
         this.mandates++;
     }
 
@@ -50,7 +55,8 @@ public class PartyResult {
         }
     }
 
-    public void showMandateCost() {
+    public void showMandateCost() { /** make it so input of true/false values determine the
+        presence or absence of data */
         calculateCostOfMandate();
         System.out.println("Party: "+party+ ". "+ "Mandates: " +mandates+ ". result: " + result + ". cost: "
                 + Arrays.deepToString(costOfMandate) + "\n Average mandate cost: " + String.valueOf(result/mandates+"00").substring(0,4));
