@@ -1,7 +1,7 @@
 
 public class Constituency {
-    private long id;
     private long mandatesToTake;
+    private long id;
 
 
     public long getMandatesToTake() {
@@ -12,8 +12,11 @@ public class Constituency {
         this.mandatesToTake = mandatesToTake;
     }
 
-    public Constituency(long id, long mandatesToTake) {
+    public Constituency(long mandatesToTake, long id) {
         this.id = id;
+        this.mandatesToTake = mandatesToTake;
+    }
+    public Constituency(long mandatesToTake) {
         this.mandatesToTake = mandatesToTake;
     }
 

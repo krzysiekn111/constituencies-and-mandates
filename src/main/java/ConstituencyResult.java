@@ -12,10 +12,11 @@ public class ConstituencyResult {
 
     public ConstituencyResult(Constituency constituency) {
         this.constituency = constituency;
+        fillPartyList();
     }
 
 
-    void fillPartyList() {
+    private void fillPartyList() {
         list.add(new PartyResult(Party.AA));
         list.add(new PartyResult(Party.BB));
         list.add(new PartyResult(Party.CC));
@@ -37,6 +38,7 @@ public class ConstituencyResult {
                 list.get(i).setFinalResult(randomResult);
             }
         }
+        delegateMandates();
     }
 
     void putResults() {
@@ -45,8 +47,9 @@ public class ConstituencyResult {
             list.get(i).setResult(randomResult);
             list.get(i).setFinalResult(randomResult);
         }
+        delegateMandates();
     }
-    void delegateMandates() {
+    private void delegateMandates() {
         long mandatesToTake = constituency.getMandatesToTake();
         while (mandatesToTake>0) {
             sortPartyList();
