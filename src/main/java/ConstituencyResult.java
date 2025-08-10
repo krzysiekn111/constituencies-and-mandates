@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -28,7 +29,7 @@ public class ConstituencyResult {
         list.add(new PartyResult(Party.FF));
     }
 
-    void putResults(Double [] results) {
+    void putResults(Double [] results, double levelOfRandomization) {
         for (int i = 0; i < 6; i++) { // the method sets support starting from 'AA' to 'BB' and so on
             if (results.length>i) {
                 list.get(i).setResult(results[i]);
@@ -44,7 +45,25 @@ public class ConstituencyResult {
         delegateMandates();
     }
 
+    void putResults(double levelOfRandomization) {
+        for (int i = 0; i < 6; i++) {
+            Double randomResult = randomResult(levelOfRandomization);
+            list.get(i).setResult(randomResult);
+            list.get(i).setFinalResult(randomResult);
+        }
+        delegateMandates();
+    }
+
     void putResults() {
+        for (int i = 0; i < 6; i++) {
+            Double randomResult = randomResult();
+            list.get(i).setResult(randomResult);
+            list.get(i).setFinalResult(randomResult);
+        }
+        delegateMandates();
+    }
+
+    void putResults(Double[] results) {
         for (int i = 0; i < 6; i++) {
             Double randomResult = randomResult();
             list.get(i).setResult(randomResult);
@@ -70,6 +89,14 @@ public class ConstituencyResult {
         return votes;
     }
 
+    private double randomResult(double levelOfRandomization) {
+        double votes = Double.parseDouble(String.valueOf(random.nextDouble(votesToTake/4,votesToTake/1.5))
+                .concat("000").substring(0,3)); // I don't want variable 'votes' value to be like 10+ digits long
+        votes = Math.pow(votes*8, 0.55);
+        votesToTake -= votes;
+        return votes;
+    }
+
     public List<PartyResult> getList() {
         finalSortPartyList();
         return this.list;
@@ -78,6 +105,7 @@ public class ConstituencyResult {
         finalSortPartyList();
         list.stream().forEach(PartyResult::trimResult);
         list.stream().forEach(System.out::println);
+        System.out.println(this.votesToTake);
     }
 
     /**

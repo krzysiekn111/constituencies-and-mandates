@@ -10,7 +10,7 @@ public class MockElection {
         for (int i = 0; i < quantityOfConstituencies; i++) {
             Constituency c = new Constituency(mandatesToTake);
             ConstituencyResult cr = new ConstituencyResult(c);
-            cr.putResults();
+            cr.putResults(100);
             constituencyResults.add(cr);
         }
     }
@@ -33,14 +33,14 @@ public class MockElection {
         Long mandatesToTake = getMandatesToTake();
         if (averageSupport) {
             for (Double result : results) {
-                double averageSupportNeededForAMandate = getAverageSupportNeededForAMandate(result);
+                double totalSupportAllConstituencies = getTotalSupportInAllConstituencies(result);
                 Long totalMandates = getTotalMandatesTaken(result);
                 data.append("for support of value: " + result + "\n");
                 data.append("and for the number of mandates = " +  mandatesToTake+ "\n");
                 try {
                     data.append(
                             String.valueOf(
-                                    averageSupportNeededForAMandate/totalMandates+"00"
+                                    totalSupportAllConstituencies/totalMandates+"00"
                             ).substring(0,4)
                     );
                     data.append(" is needed to get one mandate on average");
@@ -55,7 +55,7 @@ public class MockElection {
 
     }
 
-    private double getAverageSupportNeededForAMandate(Double result) {
+    private double getTotalSupportInAllConstituencies(Double result) {
         return constituencyResults.stream().mapToDouble(
                 a -> a.getList().stream().filter(b -> result.equals(b.getResult())).mapToDouble(b -> b.getResult()).sum()).sum();
     }
