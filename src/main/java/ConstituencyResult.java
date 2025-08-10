@@ -71,6 +71,7 @@ public class ConstituencyResult {
     }
 
     public List<PartyResult> getList() {
+        finalSortPartyList();
         return this.list;
     }
     void printResults() {
